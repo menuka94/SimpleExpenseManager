@@ -12,23 +12,23 @@ import lk.ac.mrt.cse.dbs.simpleexpensemanager.data.impl.DBTransactionDAO;
  */
 
 public class DBExpenseManager extends ExpenseManager {
-    private Context ctx;
-    public DBExpenseManager(Context ctx){
-        this.ctx = ctx;
+    private Context context;
+    public DBExpenseManager(Context context){
+        this.context = context;
         setup();
     }
     @Override
     public void setup(){
-        SQLiteDatabase mydatabase = ctx.openOrCreateDatabase("expenses5", ctx.MODE_PRIVATE, null);
+        SQLiteDatabase sqLiteDatabase = context.openOrCreateDatabase("140650E", context.MODE_PRIVATE, null);
 
-        mydatabase.execSQL("CREATE TABLE IF NOT EXISTS Account(" +
+        sqLiteDatabase.execSQL("CREATE TABLE IF NOT EXISTS Account(" +
                 "Account_no VARCHAR PRIMARY KEY," +
                 "Bank VARCHAR," +
                 "Holder VARCHAR," +
                 "Initial_amt REAL" +
                 " );");
 
-        mydatabase.execSQL("CREATE TABLE IF NOT EXISTS TransactionLog(" +
+        sqLiteDatabase.execSQL("CREATE TABLE IF NOT EXISTS TransactionLog(" +
                 "Transaction_id INTEGER PRIMARY KEY," +
                 "Account_no VARCHAR," +
                 "Type INT," +
@@ -37,10 +37,10 @@ public class DBExpenseManager extends ExpenseManager {
                 "FOREIGN KEY (Account_no) REFERENCES Account(Account_no)" +
                 ");");
 
-        AccountDAO accountDAO = new DBAccountDAO(mydatabase);
+        AccountDAO accountDAO = new DBAccountDAO(sqLiteDatabase);
 
         setAccountsDAO(accountDAO);
 
-        setTransactionsDAO(new DBTransactionDAO(mydatabase));
+        setTransactionsDAO(new DBTransactionDAO(sqLiteDatabase));
     }
 }
