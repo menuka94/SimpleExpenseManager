@@ -16,10 +16,10 @@ import lk.ac.mrt.cse.dbs.simpleexpensemanager.data.model.Transaction;
  * Created by menuka on 11/20/16.
  */
 
-public class DBTransactionDAO implements TransactionDAO {
+public class PersistentTransactionDAO implements TransactionDAO {
     private SQLiteDatabase database;
 
-    public DBTransactionDAO(SQLiteDatabase db){
+    public PersistentTransactionDAO(SQLiteDatabase db){
         this.database = db;
     }
     @Override

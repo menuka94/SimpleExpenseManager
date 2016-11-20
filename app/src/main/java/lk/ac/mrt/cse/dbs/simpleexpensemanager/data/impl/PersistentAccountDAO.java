@@ -16,10 +16,10 @@ import lk.ac.mrt.cse.dbs.simpleexpensemanager.data.model.ExpenseType;
  * Created by menuka on 11/20/16.
  */
 
-public class DBAccountDAO implements AccountDAO {
+public class PersistentAccountDAO implements AccountDAO {
     private SQLiteDatabase database;
 
-    public DBAccountDAO(SQLiteDatabase db){
+    public PersistentAccountDAO(SQLiteDatabase db){
         this.database = db;
     }
     @Override

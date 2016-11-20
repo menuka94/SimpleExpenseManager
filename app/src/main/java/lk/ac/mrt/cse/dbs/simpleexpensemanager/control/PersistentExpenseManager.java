@@ -4,16 +4,16 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 
 import lk.ac.mrt.cse.dbs.simpleexpensemanager.data.AccountDAO;
-import lk.ac.mrt.cse.dbs.simpleexpensemanager.data.impl.DBAccountDAO;
-import lk.ac.mrt.cse.dbs.simpleexpensemanager.data.impl.DBTransactionDAO;
+import lk.ac.mrt.cse.dbs.simpleexpensemanager.data.impl.PersistentAccountDAO;
+import lk.ac.mrt.cse.dbs.simpleexpensemanager.data.impl.PersistentTransactionDAO;
 
 /**
  * Created by menuka on 11/20/16.
  */
 
-public class DBExpenseManager extends ExpenseManager {
+public class PersistentExpenseManager extends ExpenseManager {
     private Context context;
-    public DBExpenseManager(Context context){
+    public PersistentExpenseManager(Context context){
         this.context = context;
         setup();
     }
@@ -37,10 +37,10 @@ public class DBExpenseManager extends ExpenseManager {
                 "FOREIGN KEY (Account_no) REFERENCES Account(Account_no)" +
                 ");");
 
-        AccountDAO accountDAO = new DBAccountDAO(sqLiteDatabase);
+        AccountDAO accountDAO = new PersistentAccountDAO(sqLiteDatabase);
 
         setAccountsDAO(accountDAO);
 
-        setTransactionsDAO(new DBTransactionDAO(sqLiteDatabase));
+        setTransactionsDAO(new PersistentTransactionDAO(sqLiteDatabase));
     }
 }
